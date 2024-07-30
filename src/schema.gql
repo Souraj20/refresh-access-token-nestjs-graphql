@@ -28,6 +28,11 @@ type LogoutUserResponse {
   message: String!
 }
 
+type RotateRefreshResponse {
+  access_token: String!
+  refresh_token: String!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
@@ -40,6 +45,7 @@ type Mutation {
   login(loginUserInput: LoginUserInput!): LoginDto!
   register_user(registerUserinput: RegisterUserInput!): RegisterUserDto!
   logout_user(logoutUserInput: LogoutUserInput!): LogoutUserResponse!
+  rotate_refresh(rotateRefreshInput: RotateRefreshInput!): RotateRefreshResponse!
 }
 
 input RegisterUserInput {
@@ -67,4 +73,9 @@ input LoginUserInput {
 
 input LogoutUserInput {
   username: String!
+}
+
+input RotateRefreshInput {
+  username: String!
+  refresh_token: String!
 }
