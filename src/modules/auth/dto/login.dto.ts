@@ -7,6 +7,6 @@ export class LoginDto {
     @Field()
     access_token: string;
 
-    @Field(() => User)
-    user: User;
+    @Field()
+    refresh_token: string;
 }

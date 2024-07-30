@@ -5,11 +5,27 @@
 type User {
   id: Int!
   username: String!
+  email: String!
+  password: String!
+  first_name: String!
+  last_name: String!
+  phoneNumber: String!
+  refresh_token: String!
 }
 
 type LoginDto {
   access_token: String!
+  refresh_token: String!
+}
+
+type RegisterUserDto {
+  access_token: String!
+  refresh_token: String!
   user: User!
+}
+
+type LogoutUserResponse {
+  message: String!
 }
 
 type Query {
@@ -18,30 +34,37 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
+  createUser(createUserInput: RegisterUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
   login(loginUserInput: LoginUserInput!): LoginDto!
+  register_user(registerUserinput: RegisterUserInput!): RegisterUserDto!
+  logout_user(logoutUserInput: LogoutUserInput!): LogoutUserResponse!
 }
 
-input CreateUserInput {
+input RegisterUserInput {
   username: String!
   password: String!
   password2: String!
   first_name: String!
   last_name: String!
+  refresh_token: String
 }
 
 input UpdateUserInput {
   username: String
   password: String
-  password2: String
   first_name: String
   last_name: String
+  refresh_token: String
   id: Int!
 }
 
 input LoginUserInput {
   username: String!
   password: String!
+}
+
+input LogoutUserInput {
+  username: String!
 }
